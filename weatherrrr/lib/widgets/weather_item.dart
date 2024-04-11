@@ -5,11 +5,11 @@ import 'package:lottie/lottie.dart';
 class WhetherItem extends StatelessWidget {
   late final String text;
   late final String subText;
-  late final String lottie;
+  late final String icon;
 
   WhetherItem({
     required this.text,
-    required this.lottie,
+    required this.icon,
     required this.subText,
   });
 
@@ -30,7 +30,7 @@ class WhetherItem extends StatelessWidget {
             mainAxisAlignment: MainAxisAlignment.spaceEvenly,
             children: [
               Lottie.asset(
-                lottie,
+                icon,
                 // transfer class parameter to the widget parameter at the specific point
                 // where the utilization is required.
                 height: 90,
@@ -39,26 +39,28 @@ class WhetherItem extends StatelessWidget {
               SizedBox(
                 height: 12,
               ),
-              RichText(
-                text: TextSpan(
-                  text: text,
-                  style: GoogleFonts.ubuntu(
-                    textStyle: TextStyle(
-                      fontSize: 18,
-                      color: Colors.black,
+              Center(
+                child: RichText(
+                  text: TextSpan(
+                    text: text,
+                    style: GoogleFonts.ubuntu(
+                      textStyle: TextStyle(
+                        fontSize: 18,
+                        color: Colors.black,
+                      ),
                     ),
-                  ),
-                  children: [
-                    TextSpan(
-                      text: subText,
-                      style: GoogleFonts.ubuntu(
-                        textStyle: TextStyle(
-                          fontSize: 18,
-                          color: Colors.black,
+                    children: [
+                      TextSpan(
+                        text: subText,
+                        style: GoogleFonts.ubuntu(
+                          textStyle: TextStyle(
+                            fontSize: 18,
+                            color: Colors.black,
+                          ),
                         ),
                       ),
-                    )
-                  ],
+                    ],
+                  ),
                 ),
               ),
             ],

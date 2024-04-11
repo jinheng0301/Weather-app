@@ -13,6 +13,7 @@ class WeatherRepository {
     final url = Uri.http('ip-api.com', '/json');
     final response = await http.get(url);
 
+    // completed
     if (response.statusCode == 200) {
       final jsonResponse =
           convert.jsonDecode(response.body) as Map<String, dynamic>;
@@ -20,7 +21,9 @@ class WeatherRepository {
       locationData = LocationData.fromJson(jsonResponse);
       log('Request successful: $jsonResponse');
       return locationData;
-    } else {
+    }
+    // failed, status code isnt 200
+    else {
       log('Request failed with status: ${response.statusCode}.');
       return locationData;
     }

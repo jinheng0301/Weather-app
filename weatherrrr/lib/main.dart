@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:weatherrrr/modules/home_binding.dart';
 import 'package:weatherrrr/modules/home_page.dart';
 
 void main() {
@@ -16,12 +17,11 @@ class MyApp extends StatelessWidget {
       debugShowCheckedModeBanner: false,
       getPages: [
         GetPage(
-          name: '',
+          name: '/',
           page: () => HomePage(),
-          // binding: HomeBinding(),
+          binding: HomeBinding(),
         ),
       ],
-      home: Scaffold(),
     );
   }
 }
