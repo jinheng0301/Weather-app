@@ -13,7 +13,7 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return GetMaterialApp(
-      title: 'Weather app with getx',
+      title: 'Weather Tracker app with getx',
       debugShowCheckedModeBanner: false,
       getPages: [
         GetPage(

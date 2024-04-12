@@ -2,12 +2,12 @@ import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:lottie/lottie.dart';
 
-class WhetherItem extends StatelessWidget {
+class WheatherItem extends StatelessWidget {
   late final String text;
   late final String subText;
   late final String icon;
 
-  WhetherItem({
+  WheatherItem({
     required this.text,
     required this.icon,
     required this.subText,
@@ -16,16 +16,18 @@ class WhetherItem extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final width = MediaQuery.of(context).size.width;
+    final height = MediaQuery.of(context).size.height;
 
     return SizedBox(
-      width: width * .5,
+      width: width * .6,
+      height: height * .25,
       child: Card(
-        margin: EdgeInsets.symmetric(horizontal: 18, vertical: 10),
+        margin: const EdgeInsets.symmetric(horizontal: 18, vertical: 10),
         shape: RoundedRectangleBorder(
           borderRadius: BorderRadius.circular(15),
         ),
         child: Padding(
-          padding: EdgeInsets.all(8),
+          padding: const EdgeInsets.all(8),
           child: Column(
             mainAxisAlignment: MainAxisAlignment.spaceEvenly,
             children: [
@@ -36,31 +38,29 @@ class WhetherItem extends StatelessWidget {
                 height: 90,
                 fit: BoxFit.cover,
               ),
-              SizedBox(
-                height: 12,
-              ),
-              Center(
-                child: RichText(
-                  text: TextSpan(
-                    text: text,
-                    style: GoogleFonts.ubuntu(
-                      textStyle: TextStyle(
-                        fontSize: 18,
-                        color: Colors.black,
-                      ),
+              const SizedBox(height: 12),
+              RichText(
+                textAlign: TextAlign.center,
+                text: TextSpan(
+                  text: text,
+                  style: GoogleFonts.ubuntu(
+                    textStyle: const TextStyle(
+                      fontSize: 18,
+                      color: Colors.black,
                     ),
-                    children: [
-                      TextSpan(
-                        text: subText,
-                        style: GoogleFonts.ubuntu(
-                          textStyle: TextStyle(
-                            fontSize: 18,
-                            color: Colors.black,
-                          ),
+                  ),
+                  children: [
+                    TextSpan(
+                      text: subText,
+                      style: GoogleFonts.ubuntu(
+                        textStyle: const TextStyle(
+                          fontSize: 18,
+                          fontWeight: FontWeight.bold,
+                          color: Colors.black,
                         ),
                       ),
-                    ],
-                  ),
+                    ),
+                  ],
                 ),
               ),
             ],

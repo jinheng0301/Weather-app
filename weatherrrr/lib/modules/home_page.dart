@@ -3,7 +3,6 @@ import 'package:flutter/services.dart';
 import 'package:get/get.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:intl/intl.dart';
-import 'package:loading_animation_widget/loading_animation_widget.dart';
 import 'package:weatherrrr/modules/home_controller.dart';
 import 'package:weatherrrr/widgets/weather_item.dart';
 
@@ -51,41 +50,43 @@ class HomePage extends StatelessWidget {
       ),
       body: SizedBox.expand(
         child: Obx(
-          () => _controller.locationData.value == null
-              ? Center(
-                  child: LoadingAnimationWidget.fallingDot(
-                    color: Colors.blue,
-                    size: 40,
-                  ),
-                )
-              : Column(
-                  mainAxisAlignment: MainAxisAlignment.center,
-                  children: [
-                    WhetherItem(
-                      icon: 'assets/loc.json',
-                      text: 'Your location is ',
-                      subText: _controller.address,
-                    ),
-                    SizedBox(
-                      height: 8,
-                    ),
-                    WhetherItem(
-                      icon: 'assets/temp.json',
-                      text: 'Your temperature is ',
-                      subText: 'TODO',
-                    ),
-                    SizedBox(
-                      height: 8,
-                    ),
-                    WhetherItem(
-                      icon: 'assets/thumbs_up.json',
-                      text: 'You should ',
-                      subText: 'TODO',
-                    ),
-                  ],
-                ),
+          () => Column(
+            mainAxisAlignment: MainAxisAlignment.center,
+            children: [
+              WheatherItem(
+                icon: 'assets/loc.json',
+                text: 'Your location is ',
+                subText: _controller.address,
+              ),
+              SizedBox(
+                height: 8,
+              ),
+              WheatherItem(
+                icon: 'assets/temp.json',
+                text: 'Your temperature is ',
+                subText: '${_controller.temperature}°C',
+              ),
+              SizedBox(
+                height: 8,
+              ),
+              WheatherItem(
+                icon: 'assets/thumbs_up.json',
+                text: 'You should ',
+                subText: _controller.infoText.value,
+              ),
+            ],
+          ),
         ),
       ),
     );
   }
 }
+
+// _controller.weatherData.value == null
+//               ? Center(
+//                   child: LoadingAnimationWidget.fallingDot(
+//                     color: Colors.blue,
+//                     size: 40,
+//                   ),
+//                 )
+//               : 
