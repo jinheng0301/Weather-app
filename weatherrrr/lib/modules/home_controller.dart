@@ -20,7 +20,7 @@ class HomeController extends GetxController {
 
   Future<void> getCurrentLocation() async {
     LocationData? location = await _repository.getCurrentLocation();
-    print(location?.regionName);
+    
     locationData.value = location;
   }
 
