@@ -14,17 +14,13 @@ class HomeController extends GetxController {
   String get address =>
       '${locationData.value?.regionName}, ${locationData.value?.country}';
   // getter for address
-
   String get temperature => '${weatherData.value?.temp}';
   // another getter for temperature
-
   // to display important data from their respective objects
 
   Future<void> getCurrentLocation() async {
     LocationData? location = await _repository.getCurrentLocation();
-
     print(location?.regionName);
-
     locationData.value = location;
   }
 
@@ -39,19 +35,20 @@ class HomeController extends GetxController {
   void _getInfoText(int? temperature) {
     if (temperature == null) {
       infoText.value = "Unknown!";
-    } else if (temperature <= 0) {
-      infoText.value =
-          "Make sure to dress in warm clothes🧥!It's freezing out there!❄️";
-    } else if (temperature <= 15) {
-      infoText.value = "Put on a jacket so you don't get sick! 🧥🤧";
     } else {
-      infoText.value = "Savor the weather, it's lovely! ☀️😊";
+      if (temperature <= 0) {
+        infoText.value =
+            "Make sure to dress in warm clothes🧥!It's freezing out there!❄️";
+      } else if (temperature <= 15) {
+        infoText.value = "Put on a jacket so you don't get sick! 🧥🤧";
+      } else {
+        infoText.value = "Savor the weather, it's lovely! ☀️😊";
+      }
     }
   }
 
   @override
   void onInit() async {
-    // TODO: implement onInit
     super.onInit();
     await getCurrentLocation();
     await getTemperatureForCurrentLocation();

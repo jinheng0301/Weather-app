@@ -20,7 +20,7 @@ class WheatherItem extends StatelessWidget {
 
     return SizedBox(
       width: width * .6,
-      height: height * .25,
+      height: height * .27,
       child: Card(
         margin: const EdgeInsets.symmetric(horizontal: 18, vertical: 10),
         shape: RoundedRectangleBorder(
@@ -45,7 +45,7 @@ class WheatherItem extends StatelessWidget {
                   text: text,
                   style: GoogleFonts.ubuntu(
                     textStyle: const TextStyle(
-                      fontSize: 18,
+                      fontSize: 15,
                       color: Colors.black,
                     ),
                   ),
@@ -54,7 +54,7 @@ class WheatherItem extends StatelessWidget {
                       text: subText,
                       style: GoogleFonts.ubuntu(
                         textStyle: const TextStyle(
-                          fontSize: 18,
+                          fontSize: 15,
                           fontWeight: FontWeight.bold,
                           color: Colors.black,
                         ),

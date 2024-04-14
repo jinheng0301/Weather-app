@@ -1,21 +1,19 @@
 // responsible for API call and organizing the data for controller.
 
+import 'package:http/http.dart' as http;
 import 'dart:convert' as convert;
 import 'dart:developer';
-import 'package:http/http.dart' as http;
-import 'package:http/http.dart';
 import 'package:weatherrrr/data/location_data.dart';
 import 'package:weatherrrr/data/weather_data.dart';
 
 class WeatherRepository {
-  final apiKey = '5fdbc41030955bb80b154ab5f31dfeac'; // API key for open weather
+  final apiKey = '5fdbc41030955bb80b154ab5f31dfeac';
 
   Future<LocationData?> getCurrentLocation() async {
     LocationData? locationData;
     final url = Uri.http('ip-api.com', '/json');
     final response = await http.get(url);
 
-    // completed
     if (response.statusCode == 200) {
       final jsonResponse =
           convert.jsonDecode(response.body) as Map<String, dynamic>;
@@ -23,9 +21,7 @@ class WeatherRepository {
       locationData = LocationData.fromJson(jsonResponse);
       log('Request successful: $jsonResponse');
       return locationData;
-    }
-    // failed, status code isnt 200
-    else {
+    } else {
       log('Request failed with status: ${response.statusCode}.');
       return locationData;
     }
@@ -37,12 +33,13 @@ class WeatherRepository {
     final params = {
       'lat': location.lat.toString(),
       'lon': location.lon.toString(),
-      'city': location.regionName,
-      'apiId': apiKey,
+      'appid': apiKey,
+      'units': 'metric',
+      // specify units as metric to get temperature in Celsius
     };
 
     final url = Uri.http('api.openweathermap.org', '/data/2.5/weather', params);
-    final Response response = await http.get(url);
+    final response = await http.get(url);
 
     if (response.statusCode == 200) {
       final jsonResponse =
