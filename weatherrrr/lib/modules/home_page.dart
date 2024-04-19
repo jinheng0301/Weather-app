@@ -51,7 +51,14 @@ class HomePage extends StatelessWidget {
       ),
       body: SizedBox.expand(
         child: Obx(
-          () => Column(
+          () => _controller.weatherData.value == null
+              ? Center(
+                  child: LoadingAnimationWidget.newtonCradle(
+                    color: Colors.blue,
+                    size: 40,
+                  ),
+                )
+              : Column(
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: [
                     WheatherItem(
@@ -82,11 +89,3 @@ class HomePage extends StatelessWidget {
     );
   }
 }
-//  _controller.weatherData.value == null
-//               ? Center(
-//                   child: LoadingAnimationWidget.fallingDot(
-//                     color: Colors.blue,
-//                     size: 40,
-//                   ),
-//                 )
-//               :

@@ -1,6 +1,5 @@
 // responsible for API call and organizing the data for controller.
 
-import 'package:geolocator/geolocator.dart';
 import 'package:http/http.dart' as http;
 import 'dart:convert' as convert;
 import 'dart:developer';
@@ -11,31 +10,47 @@ class WeatherRepository {
   final apiKey = '5fdbc41030955bb80b154ab5f31dfeac';
 
   Future<LocationData?> getCurrentLocation() async {
-    try {
-      // Request permission to access the device's location
-      LocationPermission permission = await Geolocator.requestPermission();
-      if (permission == LocationPermission.denied ||
-          permission == LocationPermission.deniedForever) {
-        // If permission is denied, return null
-        return null;
-      } else {
-        // Get the current position
-        Position position = await Geolocator.getCurrentPosition(
-          desiredAccuracy: LocationAccuracy.high,
-        );
+    // try {
+    //   // Request permission to access the device's location
+    //   LocationPermission permission = await Geolocator.requestPermission();
+    //   if (permission == LocationPermission.denied ||
+    //       permission == LocationPermission.deniedForever) {
+    //     // If permission is denied, return null
+    //     return null;
+    //   } else {
+    //     // Get the current position
+    //     Position position = await Geolocator.getCurrentPosition(
+    //       desiredAccuracy: LocationAccuracy.high,
+    //     );
 
-        print(position);
+    //     print('Position: ${position}');
 
-        // Create a LocationData object with the obtained coordinates
-        return LocationData(
-          lat: position.latitude,
-          lon: position.longitude,
-        );
-      }
-    } catch (e) {
-      // If an error occurs, return null
-      print('Error getting location: $e');
-      return null;
+    //     // Create a LocationData object with the obtained coordinates
+    //     return LocationData(
+    //       lat: position.latitude,
+    //       lon: position.longitude,
+    //     );
+    //   }
+    // } catch (e) {
+    //   // If an error occurs, return null
+    //   print('Error getting location: $e');
+    //   return null;
+    // }
+
+    LocationData? locationData;
+    final url = Uri.http('ip-api.com', '/json');
+    final response = await http.get(url);
+
+    if (response.statusCode == 200) {
+      final jsonResponse =
+          convert.jsonDecode(response.body) as Map<String, dynamic>;
+
+      locationData = LocationData.fromJson(jsonResponse);
+      log('Request successful: $jsonResponse');
+      return locationData;
+    } else {
+      log('Request failed with status: ${response.statusCode}.');
+      return locationData;
     }
   }
 
