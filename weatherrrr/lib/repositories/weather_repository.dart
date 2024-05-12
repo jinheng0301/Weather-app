@@ -46,10 +46,10 @@ class WeatherRepository {
           convert.jsonDecode(response.body) as Map<String, dynamic>;
 
       locationData = LocationData.fromJson(jsonResponse);
-      log('Request successful: $jsonResponse');
+      log('Request successful (location data): $jsonResponse');
       return locationData;
     } else {
-      log('Request failed with status: ${response.statusCode}.');
+      log('Request failed with status (location data): ${response.statusCode}.');
       return locationData;
     }
   }
@@ -73,10 +73,10 @@ class WeatherRepository {
           convert.jsonDecode(response.body) as Map<String, dynamic>;
 
       weather = WeatherData.fromJson(jsonResponse);
-      log('Request successful: $jsonResponse');
+      log('Request successful (weather data): $jsonResponse');
       return weather;
     } else {
-      log('Request failed with status: ${response.statusCode}.');
+      log('Request failed with status (weather data): ${response.statusCode}.');
       return weather;
     }
   }
